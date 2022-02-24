@@ -1,5 +1,6 @@
 import imp
 import os
+import sys
 import pandas as pd
 import numpy as np
 
@@ -18,10 +19,13 @@ class Solution():
     def run(self):
         pass
 
+contributors, projects = ReadData().read_data(sys.argv[1])
 
-test_data = ReadData().read_data()
+print(contributors)
+print(projects)
+
 score = GenerateSubmission().generate_submission()
 
 print(f'this is score {score}')
-print(f'this is test_data {test_data}')
+
 print('works')
