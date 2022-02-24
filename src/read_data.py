@@ -11,7 +11,7 @@ class ReadData():
         data_path = f'{PATH}{filename}'
 
         contributors = {}
-        projects = {}
+        projects = []
 
         with open(data_path) as f:
 
@@ -20,22 +20,30 @@ class ReadData():
             for contr in range(int(number_contributors)):
                 name_contr, nskills = f.readline().split()
 
-                contributors.update({name_contr: []})
+                contributors.update({name_contr: {'skills': [], 'busy_until': 0}})
 
                 for nskill in range(int(nskills)):
                     skill, level = f.readline().split()
-                    contributors[name_contr].append({skill : int(level)})
+                    contributors[name_contr]['skills'].append((skill, int(level)))
 
             for proj in range(int(number_projects)):
                 name_proj, complete_days, score, best_before, nroles = f.readline().split()
-                projects[name_proj] = {'complete_days' : int(complete_days), 
-                                        'score': int(score),
-                                        'best_before' : int(best_before),
-                                        'skill': []
-                                        }
+                skills = []
+                skill_acc = 0
                 for roles in range(int(nroles)):
                     skill, level = f.readline().split()
-                    projects[name_proj]['skill'].append((skill, int(level)))
+                    skill_acc += int(level)
+                    skills.append((skill, int(level)))
+
+                projects.append(
+                    (name_proj, {
+                        'complete_days' : int(complete_days), 
+                        'score': int(score),
+                        'best_before' : int(best_before),
+                        'skill': skills,
+                        'skill_acc': skill_acc,
+                        'value': int(score)/int(complete_days)
+                    }))
 
         return contributors, projects
 

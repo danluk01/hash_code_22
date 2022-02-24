@@ -19,13 +19,22 @@ class Solution():
     def run(self):
         pass
 
-contributors, projects = ReadData().read_data(sys.argv[1])
+example = sys.argv[1]
 
-print(contributors)
-print(projects)
+contributors, projects = ReadData().read_data(example)
 
-score = GenerateSubmission().generate_submission()
+projects.sort(key=lambda x: (x[1]['value'], x[1]['skill_acc']), reverse = True)
 
-print(f'this is score {score}')
+for project in projects:
+    print(project)
 
-print('works')
+solution_list = []
+
+solution = {
+    'project_count': len(solution_list),
+    'project_solution': solution_list
+}
+
+score = GenerateSubmission().generate_submission(solution, example)
+
+print(f'score {score}')
