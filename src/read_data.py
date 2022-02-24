@@ -20,11 +20,15 @@ class ReadData():
             for contr in range(int(number_contributors)):
                 name_contr, nskills = f.readline().split()
 
-                contributors.update({name_contr: {'skills': [], 'busy_until': 0}})
 
+                skills = {}
+                skill_list = []
                 for nskill in range(int(nskills)):
                     skill, level = f.readline().split()
-                    contributors[name_contr]['skills'].append((skill, int(level)))
+                    skills[skill] = int(level)
+                    skill_list.append(skill)
+                contributors.update({name_contr: {'skills': skills, 'skill_list': skill_list, 'busy_until': 0}})
+
 
             for proj in range(int(number_projects)):
                 name_proj, complete_days, score, best_before, nroles = f.readline().split()
