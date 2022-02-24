@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-class GenerateScore():
+class GenerateSubmission():
 
-    def generate_score(self):
+    def generate_submission(self):
         return 1

@@ -9,7 +9,7 @@ from read_data import (
 )
 
 from generate_score import (
-    GenerateScore
+    GenerateSubmission
 )
 
 
@@ -20,7 +20,7 @@ class Solution():
 
 
 test_data = ReadData().read_data()
-score = GenerateScore().generate_score()
+score = GenerateSubmission().generate_submission()
 
 print(f'this is score {score}')
 print(f'this is test_data {test_data}')
