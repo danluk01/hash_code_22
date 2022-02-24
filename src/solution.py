@@ -8,7 +8,7 @@ from read_data import (
     ReadData
 )
 
-from generate_score import (
+from generate_submission import (
     GenerateSubmission
 )
 
